@@ -45,4 +45,24 @@ describe Query do
       end
     end
   end
+
+   describe '#by_email' do
+    context 'with a keyword that has two matches' do
+      it 'searches for a match in full_name attribute' do
+        query = Query.new(keyword: 'Jane', file: 'clients.json')
+        expect(query.by_email).to match_array(
+          [{:id=>2, :full_name=>"Jane Smith", :email=>"jane.smith@yahoo.com"}, {:id=>15, :full_name=>"Another Jane Smith", :email=>"jane.smith@yahoo.com"}]
+        )
+      end
+    end
+ 
+    context 'with email that doesnt have duplicate' do
+      it 'returns' do
+        query = Query.new(keyword: 's', file: 'clients_two.json')
+        expect(query.by_email).to match_array(
+          []
+        )
+      end
+    end
+  end
 end
