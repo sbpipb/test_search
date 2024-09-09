@@ -14,7 +14,6 @@ class Query
     @data.select { |x| x[attribute].downcase.include? keyword }
   end
 
-    # Find out if there are any clients with the same email in the dataset, and show those duplicates if any are found. 
   def by_email
     @attribute = :email
     @data.find_all { |x| @data.map { |x| x[@attribute] }.count(x[attribute]) > 1 }
