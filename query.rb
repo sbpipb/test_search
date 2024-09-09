@@ -1,15 +1,15 @@
 require 'json'
 
 class Query
-  attr_reader :keyword, :data, :attribute
+  attr_reader :data, :attribute
 
-  def initialize(keyword:, file: 'clients.json')
-    @keyword = keyword.downcase
+  def initialize(file: 'clients.json')
     file = File.read(file)
     @data = JSON.parse(file, symbolize_names: true)
   end
 
-  def by_name
+  def by_name(keyword:)
+    keyword = keyword.downcase
     @attribute = :full_name
     @data.select { |x| x[attribute].downcase.include? keyword }
   end
