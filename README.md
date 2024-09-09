@@ -1,12 +1,12 @@
 # README
 
-# setup 
+## Setting up 
 
 ```
 asdf install
 ```
 
-# Run commands
+## Run commands
 ```
 ruby main.rb name <keyword>
 ruby main.rb email
